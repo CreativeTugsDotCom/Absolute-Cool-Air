@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absolute Cool Air Inc. | Elite HVAC Diagnostics & Repair</title>
+    <meta name="description" content="AC problems? Get clear answers before making a decision. Absolute Cool Air provides expert HVAC diagnostics, repairs, and installations.">
+    
+    <!-- Fonts: Premium pairing -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            // Upgraded premium palette
+                            navy: '#0B1221',       // Deeper, richer midnight
+                            navyLight: '#152033',  // Elevated surface
+                            copper: '#D9772B',     // Richer, metallic-feeling orange
+                            copperHover: '#B9601F',
+                            slate: '#8B9BB4',      // Softer, premium gray-blue
+                            cloud: '#F8FAFC',      // Crisp off-white
+                            charcoal: '#05080F',   // Pure dark
+                            steel: '#2A374F',      // Dark border color
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Manrope', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 40px -10px rgba(11, 18, 33, 0.15)',
+                        'glow': '0 0 20px rgba(217, 119, 43, 0.3)',
+                    },
+                    transitionTimingFunction: {
+                        'out-expo': 'cubic-bezier(0.19, 1, 0.22, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #F8FAFC;
+        }
+
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0B1221; }
+        ::-webkit-scrollbar-thumb { background: #2A374F; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D9772B; }
+
+        /* Premium Technical Grid */
+        .grid-bg-light {
+            background-size: 60px 60px;
+            background-image: 
+                linear-gradient(to right, rgba(42, 55, 79, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(42, 55, 79, 0.05) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+        }
+
+        .grid-bg-dark {
+            background-size: 60px 60px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-up { transform: translateY(40px); }
+        .reveal-left { transform: translateX(40px); }
+        .reveal-right { transform: translateX(-40px); }
+        .reveal-scale { transform: scale(0.95); }
+        
+        .is-revealed {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        /* Delay Utilities */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Premium CTA Styling */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; w: 100%; h: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+        .btn-premium:hover::before { left: 100%; }
+        
+        .arrow-icon { transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+        .group:hover .arrow-icon { transform: translateX(4px); }
+
+        /* Image Treatments */
+        .img-mask {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+        }
+        
+        .glass-panel {
+            background: rgba(11, 18, 33, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Modal transitions */
+        .modal-enter {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+</head>
+<body class="bg-brand-cloud text-brand-charcoal font-sans relative selection:bg-brand-copper selection:text-white">
+
+    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-500 bg-transparent border-b border-transparent">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-4">
+                    <a href="#" class="flex items-center gap-3 group">
+                        <div class="relative w-10 h-12 text-white group-hover:scale-105 transition-transform duration-500 ease-out-expo">
+                            <svg viewBox="0 0 40 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <clipPath id="inner-shield-header">
+                                        <path d="M5 22V10L20 4L35 10V22C35 30.5 28.5 38.5 20 42.5C11.5 38.5 5 30.5 5 22Z" />
+                                    </clipPath>
+                                </defs>
+                                <path d="M20 0L0 8V22C0 33 8.5 43 20 48C31.5 43 40 33 40 22V8L20 0Z" class="text-brand-navy dark-logo hidden" />
+                                <path d="M20 0L0 8V22C0 33 8.5 43 20 48C31.5 43 40 33 40 22V8L20 0Z" class="text-white light-logo" />
+                                <image href="https://raw.githubusercontent.com/CreativeTugsDotCom/jbj/refs/heads/main/323771693_1362900047867770_2675394890053350296_n.png" x="5" y="4" width="30" height="38.5" preserveAspectRatio="xMidYMid slice" clip-path="url(#inner-shield-header)" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col header-text text-white transition-colors duration-300">
+                            <span class="font-heading font-extrabold text-xl leading-tight tracking-tight uppercase">Absolute Cool Air</span>
+                            <span class="text-[10px] tracking-[0.2em] uppercase font-medium opacity-80">Inc.</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex space-x-10 items-center">
+                    <a href="#services" class="text-sm font-semibold tracking-wide uppercase header-text text-white/90 hover:text-brand-copper transition-colors relative group">
+                        Services
+                        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-brand-copper transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#difference" class="text-sm font-semibold tracking-wide uppercase header-text text-white/90 hover:text-brand-copper transition-colors relative group">
+                        Approach
+                        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-brand-copper transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#reviews" class="text-sm font-semibold tracking-wide uppercase header-text text-white/90 hover:text-brand-copper transition-colors relative group">
+                        Reviews
+                        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-brand-copper transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
+
+                <!-- Desktop CTA -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="tel:+18327073398" class="text-sm font-bold tracking-wide header-text text-white hover:text-brand-copper transition-colors flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        (832) 707-3398
+                    </a>
+                    <a href="#contact" class="btn-premium group bg-brand-copper text-white px-6 py-3 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-brand-copperHover transition-all shadow-glow flex items-center gap-2">
+                        Request Service
+                        <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="header-text text-white hover:text-brand-copper focus:outline-none p-2 transition-colors" aria-label="Open menu">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-navy border-t border-white/10 absolute w-full shadow-2xl glass-panel">
+            <div class="px-6 pt-4 pb-8 space-y-2">
+                <a href="#services" class="block px-3 py-4 text-sm tracking-widest uppercase font-bold text-white hover:text-brand-copper border-b border-white/5">Services</a>
+                <a href="#difference" class="block px-3 py-4 text-sm tracking-widest uppercase font-bold text-white hover:text-brand-copper border-b border-white/5">Our Approach</a>
+                <a href="#reviews" class="block px-3 py-4 text-sm tracking-widest uppercase font-bold text-white hover:text-brand-copper border-b border-white/5">Reviews</a>
+                <a href="#service-area" class="block px-3 py-4 text-sm tracking-widest uppercase font-bold text-white hover:text-brand-copper">Service Area</a>
+                <div class="mt-6 px-3 pt-6 border-t border-white/10">
+                    <a href="tel:+18327073398" class="flex items-center gap-3 text-white font-heading font-bold text-xl mb-6">
+                        <div class="w-10 h-10 rounded-full bg-brand-copper/20 flex items-center justify-center text-brand-copper">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </div>
+                        (832) 707-3398
+                    </a>
+                    <a href="#contact" class="block w-full text-center bg-brand-copper text-white px-5 py-4 rounded-sm font-bold uppercase tracking-wider shadow-glow">
+                        Request Service
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative min-h-[95vh] flex items-center bg-brand-navy overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://raw.githubusercontent.com/CreativeTugsDotCom/jbj/refs/heads/main/480925091_1220163570112707_4242888764889698619_n.jpg" alt="Qualified HVAC technician diagnosing an outdoor AC system in Texas" class="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity" />
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent"></div>
+                <div class="absolute inset-0 grid-bg-dark opacity-30"></div>
+            </div>
+
+            <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-32 pb-20">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Typography / Content -->
+                    <div class="lg:col-span-7 xl:col-span-6">
+                        <div class="reveal reveal-up">
+                            <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 border border-brand-copper/30 bg-brand-copper/10 backdrop-blur-md rounded-full">
+                                <span class="w-2 h-2 rounded-full bg-brand-copper animate-pulse"></span>
+                                <span class="text-brand-copper text-xs font-bold tracking-[0.2em] uppercase">Elite Diagnostics & Repair</span>
+                            </div>
+                            
+                            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-[1.1] mb-8 tracking-tight">
+                                AC problems?<br/>
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-brand-slate">Get clear answers.</span>
+                            </h1>
+                            
+                            <p class="text-lg sm:text-xl text-brand-slate mb-10 max-w-xl leading-relaxed font-light">
+                                From air-conditioning repairs to system replacements and airflow issues, Absolute Cool Air helps you understand your options before making a decision.
+                            </p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-5">
+                                <a href="#contact" class="btn-premium group bg-brand-copper text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center shadow-glow flex items-center justify-center gap-3 cta-action">
+                                    Schedule Service
+                                    <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </a>
+                                <a href="tel:+18327073398" class="group relative px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center text-white border border-white/20 hover:border-brand-copper hover:bg-brand-copper/5 transition-all flex items-center justify-center gap-3 cta-action glass-panel">
+                                    <svg class="w-4 h-4 text-brand-copper group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    (832) 707-3398
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Graphic Element -->
+                    <div class="hidden lg:block lg:col-span-5 xl:col-span-6 relative h-full min-h-[500px]">
+                        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-white/5 rounded-full blur-[1px] reveal reveal-scale delay-200"></div>
+                        <div class="absolute right-10 top-1/2 -translate-y-1/2 w-96 h-96 border border-brand-copper/20 rounded-full blur-[2px] reveal reveal-scale delay-300"></div>
+                        
+                        <!-- Floating Verification Card -->
+                        <div class="absolute bottom-10 right-10 glass-panel p-6 rounded-lg border border-white/10 shadow-2xl max-w-xs reveal reveal-left delay-300 transform translate-y-10 hover:-translate-y-2 transition-transform duration-500">
+                            <div class="flex items-center gap-4 mb-3">
+                                <div class="w-12 h-12 rounded-full bg-brand-copper/20 flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-brand-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-heading font-bold">Verified Local Pros</h4>
+                                    <p class="text-xs text-brand-slate uppercase tracking-wider">Since 1981</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-brand-slate leading-relaxed">Providing honest diagnostics and practical solutions to Magnolia, Cypress, and Houston.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal reveal-up delay-300 opacity-50 hover:opacity-100 transition-opacity">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-white font-medium">Scroll</span>
+                <div class="w-[1px] h-12 bg-white/20 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-1/2 bg-brand-copper animate-[slideDown_2s_ease-in-out_infinite]"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-32 relative bg-brand-cloud overflow-hidden">
+            <div class="absolute inset-0 grid-bg-light z-0"></div>
+            
+            <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-24 reveal reveal-up">
+                    <div class="max-w-2xl">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-12 h-[2px] bg-brand-copper"></span>
+                            <span class="text-brand-copper font-bold uppercase tracking-[0.2em] text-sm">Core Capabilities</span>
+                        </div>
+                        <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy leading-tight">
+                            Precision Heating &<br/>Cooling Solutions.
+                        </h2>
+                    </div>
+                    <p class="text-lg text-brand-slate max-w-md mt-6 md:mt-0 font-medium">
+                        We identify the root cause of your HVAC issues and perform high-quality work to restore your comfort safely and efficiently.
+                    </p>
+                </div>
+
+                <!-- Service 01: AC Repair -->
+                <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-32 group reveal reveal-up">
+                    <div class="relative order-2 lg:order-1">
+                        <div class="absolute -left-8 -top-8 text-[150px] font-heading font-extrabold text-brand-slate/5 select-none leading-none z-0 transition-transform duration-700 group-hover:-translate-y-4">01</div>
+                        <div class="relative z-10">
+                            <h3 class="font-heading text-3xl font-bold text-brand-navy mb-6">Air Conditioning Repair & Diagnostics</h3>
+                            <p class="text-brand-slate mb-6 leading-relaxed text-lg">
+                                When your cooling system struggles, the first step is a thorough inspection. We identify the specific problem—whether it's weak airflow, refrigerant issues, or electrical faults.
+                            </p>
+                            <p class="text-brand-slate mb-10 leading-relaxed text-lg">
+                                Our technicians focus on providing clear explanations of the repair options available so you can make an informed decision for your home.
+                            </p>
+                            <a href="#contact" class="inline-flex items-center gap-3 text-brand-navy font-bold uppercase tracking-wider text-sm hover:text-brand-copper transition-colors">
+                                Request AC Service 
+                                <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative order-1 lg:order-2 h-[500px] w-full overflow-hidden img-mask bg-brand-steel">
+                        <img src="https://raw.githubusercontent.com/CreativeTugsDotCom/jbj/refs/heads/main/481020265_1220163403446057_2467376050460840692_n.jpg" alt="Technician measuring system performance and diagnosing AC issues" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-brand-navy/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                    </div>
+                </div>
+
+                <!-- Service 02: AC Install -->
+                <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-32 group reveal reveal-up delay-100">
+                    <div class="relative h-[500px] w-full overflow-hidden img-mask bg-brand-steel">
+                        <img src="https://raw.githubusercontent.com/CreativeTugsDotCom/jbj/refs/heads/main/Screenshot%202026-10-14%20033158.png" alt="Professional outdoor condenser installation at a residential property" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-brand-navy/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -right-8 -top-8 text-[150px] font-heading font-extrabold text-brand-slate/5 select-none leading-none z-0 transition-transform duration-700 group-hover:-translate-y-4">02</div>
+                        <div class="relative z-10">
+                            <h3 class="font-heading text-3xl font-bold text-brand-navy mb-6">System Replacement & Installation</h3>
+                            <p class="text-brand-slate mb-6 leading-relaxed text-lg">
+                                We present installation as a considered decision, not a high-pressure pitch. If repair is no longer viable, we help you understand your system requirements and budget options.
+                            </p>
+                            <p class="text-brand-slate mb-10 leading-relaxed text-lg">
+                                We ensure proper sizing, precise refrigerant line arrangement, and a professional installation that sets your new system up for long-term reliability.
+                            </p>
+                            <a href="#contact" class="inline-flex items-center gap-3 text-brand-navy font-bold uppercase tracking-wider text-sm hover:text-brand-copper transition-colors">
+                                Discuss Replacement
+                                <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Services Grid -->
+                <div class="grid md:grid-cols-3 gap-8 mt-20">
+                    <!-- Heating -->
+                    <div class="group bg-white p-10 rounded-sm shadow-premium border border-brand-slate/10 hover:border-brand-copper/30 transition-all duration-500 hover:-translate-y-2 reveal reveal-up">
+                        <div class="w-14 h-14 bg-brand-cloud rounded-full flex items-center justify-center mb-8 text-brand-navy group-hover:text-white group-hover:bg-brand-copper transition-colors duration-500">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path></svg>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-brand-navy mb-4">Heating Service</h4>
+                        <p class="text-brand-slate text-sm leading-relaxed mb-8">Practical heating and furnace repairs tailored to Texas seasonal needs. Reliable warmth when temperatures suddenly drop.</p>
+                        <a href="#contact" class="text-xs font-bold uppercase tracking-widest text-brand-copper flex items-center gap-2">
+                            Explore <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    
+                    <!-- Airflow -->
+                    <div class="group bg-white p-10 rounded-sm shadow-premium border border-brand-slate/10 hover:border-brand-copper/30 transition-all duration-500 hover:-translate-y-2 reveal reveal-up delay-100">
+                        <div class="w-14 h-14 bg-brand-cloud rounded-full flex items-center justify-center mb-8 text-brand-navy group-hover:text-white group-hover:bg-brand-copper transition-colors duration-500">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-brand-navy mb-4">Ductwork & Airflow</h4>
+                        <p class="text-brand-slate text-sm leading-relaxed mb-8">We diagnose underlying restrictions, leaky ductwork, and insulation conditions that drastically impact system performance.</p>
+                        <a href="#contact" class="text-xs font-bold uppercase tracking-widest text-brand-copper flex items-center gap-2">
+                            Explore <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+
+                    <!-- Maintenance -->
+                    <div class="group bg-white p-10 rounded-sm shadow-premium border border-brand-slate/10 hover:border-brand-copper/30 transition-all duration-500 hover:-translate-y-2 reveal reveal-up delay-200">
+                        <div class="w-14 h-14 bg-brand-cloud rounded-full flex items-center justify-center mb-8 text-brand-navy group-hover:text-white group-hover:bg-brand-copper transition-colors duration-500">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h4 class="font-heading text-xl font-bold text-brand-navy mb-4">Maintenance</h4>
+                        <p class="text-brand-slate text-sm leading-relaxed mb-8">Thorough inspections to identify potential problems early and ensure your system operates as intended before heavy use.</p>
+                        <a href="#contact" class="text-xs font-bold uppercase tracking-widest text-brand-copper flex items-center gap-2">
+                            Explore <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="difference" class="py-32 bg-brand-navyLight text-white relative overflow-hidden">
+            <div class="absolute inset-0 bg-brand-navy z-0 img-mask opacity-50"></div>
+            
+            <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    
+                    <div class="relative reveal reveal-right">
+                        <div class="aspect-[4/5] overflow-hidden rounded-sm relative z-10">
+                            <img src="https://raw.githubusercontent.com/CreativeTugsDotCom/jbj/refs/heads/main/e230b5f3-1d66-4902-afbb-2f4eb4ffc073.jpg" alt="Technician clearly explaining HVAC issues to a homeowner" class="w-full h-full object-cover grayscale-[30%] brightness-110" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-navy to-transparent opacity-80"></div>
+                        </div>
+                        <div class="absolute -bottom-10 -right-10 w-2/3 h-2/3 border border-brand-copper/30 z-0"></div>
+                        
+                        <!-- Overlay stat -->
+                        <div class="absolute bottom-10 -left-6 glass-panel p-6 rounded-sm max-w-[240px] z-20 shadow-2xl border-l-4 border-l-brand-copper">
+                            <p class="text-sm font-medium text-white">"Instead of just telling me it was broken, he showed me exactly what was failing."</p>
+                        </div>
+                    </div>
+
+                    <div class="reveal reveal-left delay-100">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-12 h-[2px] bg-brand-copper"></span>
+                            <span class="text-brand-copper font-bold uppercase tracking-[0.2em] text-sm">The Difference</span>
+                        </div>
+                        <h2 class="font-heading text-4xl md:text-5xl font-extrabold mb-12">Honest Diagnostics.<br/>Practical Options.</h2>
+                        
+                        <div class="space-y-10">
+                            <!-- Feature 1 -->
+                            <div class="group flex gap-6 items-start">
+                                <div class="flex-shrink-0 mt-1 relative">
+                                    <span class="absolute inset-0 bg-brand-copper blur-md opacity-0 group-hover:opacity-40 transition-opacity"></span>
+                                    <div class="w-12 h-12 rounded-sm bg-brand-navy border border-brand-copper/30 flex items-center justify-center relative z-10 transition-colors group-hover:border-brand-copper group-hover:bg-brand-copper/10">
+                                        <span class="text-brand-copper font-bold font-heading">01</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-heading font-bold text-white mb-3 tracking-wide">Clear Explanations</h4>
+                                    <p class="text-brand-slate leading-relaxed text-base">We avoid technical jargon to confuse you. We help you understand exactly what the problem is, what we found, and how it impacts your system.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Feature 2 -->
+                            <div class="group flex gap-6 items-start">
+                                <div class="flex-shrink-0 mt-1 relative">
+                                    <span class="absolute inset-0 bg-brand-copper blur-md opacity-0 group-hover:opacity-40 transition-opacity"></span>
+                                    <div class="w-12 h-12 rounded-sm bg-brand-navy border border-brand-copper/30 flex items-center justify-center relative z-10 transition-colors group-hover:border-brand-copper group-hover:bg-brand-copper/10">
+                                        <span class="text-brand-copper font-bold font-heading">02</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-heading font-bold text-white mb-3 tracking-wide">Practical Alternatives</h4>
+                                    <p class="text-brand-slate leading-relaxed text-base">Every home and budget is different. We present repair and replacement alternatives, giving you facts to make an informed decision without aggressive upselling.</p>
+                                </div>
+                            </div>
+
+                            <!-- Feature 3 -->
+                            <div class="group flex gap-6 items-start">
+                                <div class="flex-shrink-0 mt-1 relative">
+                                    <span class="absolute inset-0 bg-brand-copper blur-md opacity-0 group-hover:opacity-40 transition-opacity"></span>
+                                    <div class="w-12 h-12 rounded-sm bg-brand-navy border border-brand-copper/30 flex items-center justify-center relative z-10 transition-colors group-hover:border-brand-copper group-hover:bg-brand-copper/10">
+                                        <span class="text-brand-copper font-bold font-heading">03</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-heading font-bold text-white mb-3 tracking-wide">Thorough Problem-Solving</h4>
+                                    <p class="text-brand-slate leading-relaxed text-base">We value careful inspections over rushing to the next job. By diagnosing the root cause, we solve problems rather than applying temporary patches.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="founder" class="py-32 bg-brand-cloud relative overflow-hidden">
+            <!-- Background element -->
+            <div class="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-white rounded-bl-[100px] z-0"></div>
+            <div class="absolute inset-0 grid-bg-light opacity-30 z-0"></div>
+
+            <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+                    
+                    <!-- Image Column with Interactive Effects -->
+                    <div class="lg:col-span-5 relative group reveal reveal-up">
+                        <!-- Decorative Frame (Moves on hover) -->
+                        <div class="absolute -inset-4 border border-brand-copper/30 rounded-sm transform translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-700 ease-out-expo z-0"></div>
+                        <div class="absolute -inset-4 bg-brand-copper/5 rounded-sm transform -translate-x-4 -translate-y-4 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform duration-700 ease-out-expo z-0"></div>
+                        
+                        <!-- Main Image Container -->
+                        <div class="relative aspect-[4/5] overflow-hidden rounded-sm z-10 shadow-premium">
+                            <img src="https://raw.githubusercontent.com/CreativeTugsDotCom/jbj/refs/heads/main/6fbb4362-c01f-4e6b-bd6d-386c4d26daaf.jpg" alt="James - Founder of Absolute Cool Air Inc." class="w-full h-full object-cover object-top filter contrast-[1.05] group-hover:scale-110 transition-transform duration-1000 ease-out-expo" />
+                            
+                            <!-- Gradient overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent opacity-80 group-hover:opacity-50 transition-opacity duration-700"></div>
+                            
+                            <!-- Interactive Overlay Badge (Slides up on hover) -->
+                            <div class="absolute bottom-6 left-6 glass-panel p-5 pr-8 rounded-sm border-l-4 border-l-brand-copper transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out-expo delay-100">
+                                <p class="text-white font-heading font-extrabold text-2xl leading-none mb-1 tracking-tight">James</p>
+                                <p class="text-brand-copper text-xs uppercase tracking-widest font-bold">Founder & Lead Tech</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Trust Element -->
+                        <div class="absolute -right-8 top-12 w-28 h-28 bg-white rounded-full shadow-2xl flex items-center justify-center border border-brand-slate/10 z-20 hidden md:flex transform group-hover:-translate-y-4 transition-transform duration-700 ease-out-expo">
+                            <div class="text-center">
+                                <span class="block text-brand-navy font-heading font-black text-3xl leading-none">1981</span>
+                                <span class="block text-[9px] uppercase tracking-widest text-brand-copper mt-1 font-bold">Est. Since</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text Column -->
+                    <div class="lg:col-span-7 reveal reveal-left delay-200">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-12 h-[2px] bg-brand-copper"></span>
+                            <span class="text-brand-copper font-bold uppercase tracking-[0.2em] text-sm">Meet The Founder</span>
+                        </div>
+                        
+                        <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-navy leading-tight mb-8">
+                            A standard of <br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-navy to-brand-copper">honest diagnostics.</span>
+                        </h2>
+                        
+                        <div class="space-y-6 text-lg text-brand-slate leading-relaxed font-light mb-12 relative">
+                            <!-- Subtle Quote Mark -->
+                            <div class="absolute -top-8 -left-6 text-brand-copper/10 font-heading text-8xl leading-none font-black select-none z-0">"</div>
+                            
+                            <p class="relative z-10">
+                                When I established Absolute Cool Air, I wanted to build a company that homeowners could genuinely rely on. The HVAC industry can sometimes be filled with aggressive sales tactics and rushed inspections—that's not how we operate.
+                            </p>
+                            <p class="relative z-10">
+                                My team and I believe in showing you exactly what's wrong, explaining the 'why' behind it, and offering practical choices. Whether it's a routine repair or sizing a new installation, you deserve the facts before making a decision for your home.
+                            </p>
+                        </div>
+                        
+                        <!-- Signature & Interactive CTA -->
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-10 pt-8 border-t border-brand-slate/20">
+                            <!-- Animated Signature -->
+                            <div class="relative group cursor-pointer inline-block">
+                                <div class="font-heading text-5xl text-brand-navy font-black italic tracking-tighter pr-4">James</div>
+                                <div class="absolute bottom-1 left-0 h-1 w-0 bg-brand-copper transition-all duration-500 ease-out-expo group-hover:w-full"></div>
+                            </div>
+                            
+                            <div class="h-12 w-[1px] bg-brand-slate/20 hidden sm:block"></div>
+                            
+                            <!-- Custom Contact Button -->
+                            <a href="tel:+18327073398" class="flex items-center gap-4 group">
+                                <div class="w-12 h-12 rounded-full border border-brand-slate/20 flex items-center justify-center text-brand-navy group-hover:border-brand-copper group-hover:bg-brand-copper group-hover:text-white transition-all duration-300 shadow-sm">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] uppercase tracking-widest text-brand-slate font-bold mb-1 group-hover:text-brand-copper transition-colors">Direct Line</span>
+                                    <span class="block text-brand-navy font-extrabold text-lg leading-none">(832) 707-3398</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="py-32 bg-white relative">
+            <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Simple Process Vertical -->
+                <div class="grid lg:grid-cols-12 gap-16 mb-32">
+                    <div class="lg:col-span-5 reveal reveal-right">
+                        <h2 class="font-heading text-4xl font-extrabold text-brand-navy mb-6">A Trustworthy Process</h2>
+                        <p class="text-brand-slate text-lg mb-10">Know exactly what to expect when you contact Absolute Cool Air for service.</p>
+                        
+                        <div class="relative pl-8 border-l border-brand-slate/20 space-y-12">
+                            <div class="relative">
+                                <div class="absolute -left-[41px] w-5 h-5 rounded-full bg-white border-4 border-brand-copper"></div>
+                                <h4 class="font-heading font-bold text-brand-navy text-xl mb-2">1. Tell Us What's Happening</h4>
+                                <p class="text-brand-slate">Contact us and describe your heating or cooling problem.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[41px] w-5 h-5 rounded-full bg-brand-cloud border-4 border-brand-slate/30"></div>
+                                <h4 class="font-heading font-bold text-brand-navy text-xl mb-2">2. Inspect & Diagnose</h4>
+                                <p class="text-brand-slate">Our technician assesses the issue using diagnostic methods.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[41px] w-5 h-5 rounded-full bg-brand-cloud border-4 border-brand-slate/30"></div>
+                                <h4 class="font-heading font-bold text-brand-navy text-xl mb-2">3. Understand Options</h4>
+                                <p class="text-brand-slate">We explain the findings and lay out available next steps.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonials -->
+                    <div class="lg:col-span-7 reveal reveal-left delay-100">
+                        <div class="bg-brand-cloud p-10 md:p-14 rounded-sm border border-brand-slate/10 relative">
+                            <!-- Quote Mark Decoration -->
+                            <div class="absolute top-10 right-10 text-brand-copper/10 font-heading text-8xl leading-none font-black select-none">"</div>
+                            
+                            <h3 class="font-heading text-2xl font-bold text-brand-navy mb-10 relative z-10">What Our Customers Say</h3>
+                            
+                            <div class="space-y-8 relative z-10">
+                                <div class="border-b border-brand-slate/10 pb-8">
+                                    <div class="flex text-brand-copper mb-4 gap-1">
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    </div>
+                                    <p class="text-brand-charcoal text-lg font-medium leading-relaxed mb-4">"James was incredibly thorough. Instead of just telling me the unit was broken, he showed me exactly what was failing on the inspection and explained the repair options clearly. Very reasonable."</p>
+                                    <span class="text-sm font-bold tracking-widest uppercase text-brand-slate">— Customer in Cypress</span>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex text-brand-copper mb-4 gap-1">
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    </div>
+                                    <p class="text-brand-charcoal text-lg font-medium leading-relaxed mb-4">"They actually took the time to figure out the airflow issue we've had for years. Replaced what needed to be replaced and helped us find an option that fit our budget without pushing an oversized system."</p>
+                                    <span class="text-sm font-bold tracking-widest uppercase text-brand-slate">— Customer in Magnolia</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-32 bg-brand-charcoal text-white relative">
+            <div class="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none z-0"></div>
+            
+            <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="bg-brand-navyLight border border-white/10 rounded-sm shadow-2xl overflow-hidden reveal reveal-up">
+                    <div class="flex flex-col lg:flex-row">
+                        <!-- Contact Info Panel -->
+                        <div class="w-full lg:w-2/5 p-12 lg:p-16 border-r border-white/5 relative overflow-hidden">
+                            <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-brand-copper/10 blur-[80px] rounded-full"></div>
+                            
+                            <h3 class="font-heading text-3xl font-bold text-white mb-6">Let's solve the problem.</h3>
+                            <p class="text-brand-slate text-lg mb-12">Tell us what's happening with your system, and we'll arrange a time to inspect and properly diagnose the issue.</p>
+                            
+                            <div class="space-y-10">
+                                <a href="tel:+18327073398" class="flex items-center gap-6 group">
+                                    <div class="w-14 h-14 rounded-full border border-white/10 bg-brand-navy flex items-center justify-center text-white group-hover:border-brand-copper group-hover:text-brand-copper transition-colors shadow-premium">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs uppercase tracking-[0.2em] text-brand-slate font-bold mb-1">Direct Line</p>
+                                        <p class="font-heading text-2xl font-extrabold text-white">(832) 707-3398</p>
+                                    </div>
+                                </a>
+                                
+                                <div class="flex items-center gap-6">
+                                    <div class="w-14 h-14 rounded-full border border-white/10 bg-brand-navy flex items-center justify-center text-white shadow-premium">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs uppercase tracking-[0.2em] text-brand-slate font-bold mb-1">Service Areas</p>
+                                        <p class="text-white font-medium">Magnolia, Cypress, Houston, TX</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Premium Form -->
+                        <div class="w-full lg:w-3/5 p-12 lg:p-16 bg-brand-navy relative z-10">
+                            <h3 class="font-heading text-2xl font-bold text-white mb-8">Request Service</h3>
+                            
+                            <form id="service-form" class="space-y-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div class="relative">
+                                        <input type="text" id="name" required class="w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-transparent focus:border-brand-copper focus:outline-none transition-colors peer" placeholder="Name">
+                                        <label for="name" class="absolute left-0 -top-3.5 text-xs font-bold uppercase tracking-wider text-brand-slate transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-slate/50 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-copper">Full Name</label>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="tel" id="phone" required class="w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-transparent focus:border-brand-copper focus:outline-none transition-colors peer" placeholder="Phone">
+                                        <label for="phone" class="absolute left-0 -top-3.5 text-xs font-bold uppercase tracking-wider text-brand-slate transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-slate/50 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-copper">Phone Number</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative mt-8">
+                                    <select id="service-type" required class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:border-brand-copper focus:outline-none transition-colors appearance-none cursor-pointer">
+                                        <option value="" disabled selected class="text-brand-charcoal">Select service needed...</option>
+                                        <option value="AC Repair" class="text-brand-charcoal">AC Repair & Diagnostics</option>
+                                        <option value="AC Install" class="text-brand-charcoal">System Replacement</option>
+                                        <option value="Heating" class="text-brand-charcoal">Heating Service</option>
+                                        <option value="Maintenance" class="text-brand-charcoal">Maintenance</option>
+                                    </select>
+                                    <div class="absolute right-0 top-4 pointer-events-none text-brand-slate">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative mt-8">
+                                    <textarea id="description" rows="3" required class="w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-transparent focus:border-brand-copper focus:outline-none transition-colors peer resize-none" placeholder="Description"></textarea>
+                                    <label for="description" class="absolute left-0 -top-3.5 text-xs font-bold uppercase tracking-wider text-brand-slate transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-slate/50 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-brand-copper">Briefly describe the issue</label>
+                                </div>
+                                
+                                <button type="submit" class="btn-premium group w-full bg-white text-brand-navy hover:text-white font-extrabold uppercase tracking-widest py-4 px-6 rounded-sm transition-colors mt-8 flex justify-center items-center gap-3 shadow-premium cta-action">
+                                    Submit Request
+                                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </button>
+                                
+                                <div id="form-message" class="hidden mt-4 p-4 rounded-sm text-sm font-bold border border-green-500/30 bg-green-500/10 text-green-400"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-charcoal text-brand-slate pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                <div class="md:col-span-4">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="relative w-8 h-10 text-white">
+                            <svg viewBox="0 0 40 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <clipPath id="inner-shield-footer">
+                                        <path d="M5 22V10L20 4L35 10V22C35 30.5 28.5 38.5 20 42.5C11.5 38.5 5 30.5 5 22Z" />
+                                    </clipPath>
+                                </defs>
+                                <path d="M20 0L0 8V22C0 33 8.5 43 20 48C31.5 43 40 33 40 22V8L20 0Z" />
+                                <image href="https://raw.githubusercontent.com/CreativeTugsDotCom/jbj/refs/heads/main/323771693_1362900047867770_2675394890053350296_n.png" x="5" y="4" width="30" height="38.5" preserveAspectRatio="xMidYMid slice" clip-path="url(#inner-shield-footer)" />
+                            </svg>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-white tracking-tight uppercase">Absolute Cool Air</span>
+                    </div>
+                    <p class="text-sm mb-6 max-w-sm leading-relaxed">Elite HVAC diagnostics, repairs, and practical solutions for homeowners in Southeast Texas. Understand your options. Choose the right solution.</p>
+                </div>
+                
+                <div class="md:col-span-4 md:col-start-6">
+                    <h4 class="font-heading font-bold text-white uppercase tracking-widest text-sm mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li><a href="#services" class="hover:text-brand-copper transition-colors">AC Repair & Installation</a></li>
+                        <li><a href="#services" class="hover:text-brand-copper transition-colors">Heating Services</a></li>
+                        <li><a href="#difference" class="hover:text-brand-copper transition-colors">The ACA Difference</a></li>
+                    </ul>
+                </div>
+                
+                <div class="md:col-span-3">
+                    <h4 class="font-heading font-bold text-white uppercase tracking-widest text-sm mb-6">Contact</h4>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li><a href="tel:+18327073398" class="hover:text-white transition-colors">Phone: (832) 707-3398</a></li>
+                        <li><a href="mailto:service@absolutecoolair.com" class="hover:text-white transition-colors">Email: service@absolutecoolair.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs font-bold tracking-widest uppercase">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Absolute Cool Air Inc.</p>
+                <p class="mt-4 md:mt-0 opacity-50">Magnolia, TX</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="conversion-modal" class="fixed inset-0 z-[100] hidden items-end sm:items-center justify-center pointer-events-none" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div id="modal-backdrop" class="fixed inset-0 bg-brand-charcoal/80 backdrop-blur-md opacity-0 transition-opacity duration-500 pointer-events-auto"></div>
+
+        <div id="modal-panel" class="bg-brand-navy w-full sm:max-w-md rounded-t-lg sm:rounded-sm shadow-2xl relative z-10 pointer-events-auto modal-enter overflow-hidden flex flex-col border border-white/10">
+            <div class="absolute top-0 left-0 w-full h-1 bg-brand-copper"></div>
+            
+            <div class="px-8 pt-10 pb-8 text-center relative">
+                <button id="close-modal-btn" class="absolute top-4 right-4 text-brand-slate hover:text-white transition-colors focus:outline-none" aria-label="Close dialog">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-brand-copper/10 text-brand-copper mb-6 border border-brand-copper/20 shadow-glow">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                
+                <h3 class="text-2xl font-heading font-extrabold text-white mb-3 tracking-tight" id="modal-title">HVAC Issues?</h3>
+                <p class="text-sm text-brand-slate mb-8 font-medium leading-relaxed">Tell us what's happening with your system, and let's discuss the next practical step.</p>
+                
+                <div class="flex flex-col gap-4">
+                    <a href="tel:+18327073398" class="btn-premium group w-full bg-brand-copper text-white px-4 py-4 rounded-sm font-bold uppercase tracking-widest text-sm transition-all flex items-center justify-center gap-3 shadow-glow cta-action">
+                        Call (832) 707-3398
+                    </a>
+                    <button onclick="document.getElementById('close-modal-btn').click(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" class="group w-full bg-transparent text-white border border-white/20 px-4 py-4 rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-white/5 hover:border-white/40 transition-colors cta-action">
+                        Request Service Online
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Header Scroll Effect
+            const header = document.getElementById('main-header');
+            const logoDark = document.querySelector('.dark-logo');
+            const logoLight = document.querySelector('.light-logo');
+            const headerTexts = document.querySelectorAll('.header-text');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-white/95', 'backdrop-blur-md', 'border-brand-slate/20', 'shadow-sm');
+                    header.classList.remove('bg-transparent', 'border-transparent');
+                    
+                    logoDark.classList.remove('hidden');
+                    logoLight.classList.add('hidden');
+                    
+                    headerTexts.forEach(el => {
+                        el.classList.remove('text-white', 'text-white/90');
+                        el.classList.add('text-brand-navy');
+                    });
+                } else {
+                    header.classList.remove('bg-white/95', 'backdrop-blur-md', 'border-brand-slate/20', 'shadow-sm');
+                    header.classList.add('bg-transparent', 'border-transparent');
+                    
+                    logoDark.classList.add('hidden');
+                    logoLight.classList.remove('hidden');
+
+                    headerTexts.forEach(el => {
+                        el.classList.add('text-white', 'text-white/90');
+                        el.classList.remove('text-brand-navy');
+                    });
+                }
+            });
+
+            // 2. Intersection Observer for Scroll Reveals (The "Premium" Feel)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        observer.unobserve(entry.target); // Run once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // 3. Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // 4. Form Handling
+            const form = document.getElementById('service-form');
+            const formMessage = document.getElementById('form-message');
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = 'Sending...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    formMessage.textContent = "Request received. We will contact you shortly.";
+                    formMessage.classList.remove('hidden');
+                    formMessage.classList.add('block');
+                    
+                    sessionStorage.setItem('aca_popup_converted', 'true');
+                }, 1200);
+            });
+
+            // 5. Advanced 20-Second Conversion Popup Logic
+            const modal = document.getElementById('conversion-modal');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const modalPanel = document.getElementById('modal-panel');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const ctaActions = document.querySelectorAll('.cta-action');
+            
+            let popupTimer;
+            const POPUP_DELAY = 20000;
+            const MAX_APPEARANCES = 3;
+
+            function showModal() {
+                const converted = sessionStorage.getItem('aca_popup_converted') === 'true';
+                let shownCount = parseInt(sessionStorage.getItem('aca_popup_shown_count') || '0', 10);
+                
+                if (converted || shownCount >= MAX_APPEARANCES) return;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                
+                setTimeout(() => {
+                    modalBackdrop.classList.remove('opacity-0');
+                    modalPanel.classList.add('modal-enter-active');
+                }, 10);
+
+                sessionStorage.setItem('aca_popup_shown_count', (shownCount + 1).toString());
+            }
+
+            function hideModal(scheduleNext = true) {
+                modalBackdrop.classList.add('opacity-0');
+                modalPanel.classList.remove('modal-enter-active');
+                
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    
+                    const converted = sessionStorage.getItem('aca_popup_converted') === 'true';
+                    let shownCount = parseInt(sessionStorage.getItem('aca_popup_shown_count') || '0', 10);
+                    
+                    if (scheduleNext && !converted && shownCount < MAX_APPEARANCES) {
+                        schedulePopup();
+                    }
+                }, 500); 
+            }
+
+            function schedulePopup() {
+                clearTimeout(popupTimer);
+                const converted = sessionStorage.getItem('aca_popup_converted') === 'true';
+                let shownCount = parseInt(sessionStorage.getItem('aca_popup_shown_count') || '0', 10);
+                
+                if (!converted && shownCount < MAX_APPEARANCES) {
+                    popupTimer = setTimeout(showModal, POPUP_DELAY);
+                }
+            }
+
+            closeModalBtn.addEventListener('click', () => hideModal(true));
+            modalBackdrop.addEventListener('click', () => hideModal(true));
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    hideModal(true);
+                }
+            });
+
+            ctaActions.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    sessionStorage.setItem('aca_popup_converted', 'true');
+                    clearTimeout(popupTimer);
+                    if (!modal.classList.contains('hidden')) {
+                        hideModal(false);
+                    }
+                });
+            });
+
+            schedulePopup();
+        });
+    </script>
+</body>
+</html>
